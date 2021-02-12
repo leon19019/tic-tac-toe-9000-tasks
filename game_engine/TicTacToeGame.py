@@ -104,3 +104,5 @@ class TicTacToeGame(AbstractTicTacToeGame):
 
 
     
+    def GetCurrentPlayer(self):
+        return self._player_id

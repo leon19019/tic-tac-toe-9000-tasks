@@ -42,7 +42,7 @@ if __name__ == "__main__":
             screen_clear()
             print("Wrong format!")
             continue
-        turn = TicTacToeTurn(game.current_player_id(), x, y)
+        turn = TicTacToeTurn(game.GetCurrentPlayer(), x, y)
         if not game.is_turn_correct(turn):
             screen_clear()
             print("Incorrect turn!")
