@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod, abstractproperty
+from abc import ABC, abstractmethod
 from typing import List, Callable
 from dataclasses import dataclass
+
 
 @dataclass
 class TicTacToeTurn:
@@ -16,13 +17,7 @@ class TicTacToeGameInfo:
     sequence_of_turns: List[TicTacToeTurn]
     first_player_id: str
     second_player_id: str
-    winner_id: str
-
-
-@dataclass
-class UserInfo:
-    user_id: str
-    secret_key: str 
+    winner_id: str # а какие могут быть варианты?
 
 
 class AbstractTicTacToeGame(ABC):
@@ -45,6 +40,7 @@ class AbstractTicTacToeGame(ABC):
         """сначала проверяем корректность, для проверки используйте is_turn_correct,
         а возвращаем TicTacToeGameInfo"""
 
-    @abstractproperty
+    @abstractmethod
     def get_game_info(self) -> TicTacToeGameInfo:
         """обычный геттер"""
+

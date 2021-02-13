@@ -1,5 +1,6 @@
 from game_engine import TicTacToeGame, TicTacToeGameInfo, TicTacToeTurn
 
+
 def test_scenario():
     game = TicTacToeGame(
         game_id="0001",
