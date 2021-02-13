@@ -1,4 +1,4 @@
-from TicTacToeClass import AbstractTicTacToeGame, TicTacToeGameInfo, TicTacToeTurn
+from TicTacToeClass import TicTacToeTurn, TicTacToeGameInfo, AbstractTicTacToeGame
 from copy import deepcopy
 
 class TicTacToeGame(AbstractTicTacToeGame):
