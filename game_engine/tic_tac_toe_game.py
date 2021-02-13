@@ -1,7 +1,7 @@
 from typing import Callable
 from copy import deepcopy
 
-from .tic_tac_toe_common_lib import TicTacToeGameInfo, TicTacToeTurn, AbstractTicTacToeGame
+from tic_tac_toe_common_lib import TicTacToeGameInfo, TicTacToeTurn, AbstractTicTacToeGame
 
 class TicTacToeGame(AbstractTicTacToeGame):
     def __init__(self, game_id: str, first_player_id: str, second_player_id: str,
