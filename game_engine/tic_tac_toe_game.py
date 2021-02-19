@@ -70,49 +70,36 @@ class TicTacToeGame(AbstractTicTacToeGame):
     def get_game_info(self):
         return deepcopy(self.TicTacToeGameInfo)
 
-    def _set_winner(self) -> None:
-        if self.TicTacToeGameInfo.winner_id != "":
-            return
+    def _set_winner(self):
+        for elem in self.TicTacToeGameInfo.field:
+            if elem == ["X", "X", "X"]:
+                self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.first_player_id
+            elif elem == ["O", "O", "O"]:
+                self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.second_player_id
 
-        field = self.get_game_info().field
-
+    
         for i in range(3):
-            row1 = []
-            row2 = []
-
+            column = []
             for j in range(3):
-                row1.append(field[i][j])
-                row2.append(field[j][i])
+                column.append(self.TicTacToeGameInfo.field[j][i])
+            
+            if column == ["X", "X", "X"]:
+                self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.first_player_id
+            elif column == ["0", "0", "0"]:
+                self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.second_player_id
 
-            if row1 == ["X"] * 3 or row2 == ["X"] * 3:
-                self._winner_id = self.TicTacToeGameInfo.first_player_id
-                return
-
-            if row1 == ["O"] * 3 or row2 == ["O"] * 3:
-                self._winner_id = self.TicTacToeGameInfo.second_player_id
-                return
-
-            if ("X" not in row1) or ("X" not in row2) or ("O" not in row1) or ("O" not in row2):
-                draw = False
-
-        row1 = []
-        row2 = []
-        draw = True
-
+        FirstDiagonal = []
+        SecondDiagonal = []
+        i = 0
         for i in range(3):
-            row1.append(field[i][i])
-            row2.append(field[i][2 - i])
+            FirstDiagonal.append(self.TicTacToeGameInfo.field[i][i])
+        
+        i = 0
+        for i in range(3):
+            SecondDiagonal.append(self.TicTacToeGameInfo.field[i][2-i])
 
-        if row1 == ["X"] * 3 or row2 == ["X"] * 3:
-            self._winner_id = self.TicTacToeGameInfo.first_player_id
-            return
-
-        if row1 == ["O"] * 3 or row2 == ["O"] * 3:
-            self._winner_id = self.TicTacToeGameInfo.second_player_id
-            return
-
-        if ("X" not in row1) or ("X" not in row2) or ("O" not in row1) or ("O" not in row2):
-            draw = False
-
-        if draw:
-            self._winner_id = "draw"
+        if FirstDiagonal == ["X", "X", "X"] or SecondDiagonal == ["X", "X", "X"]:
+            self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.first_player_id
+        
+        elif FirstDiagonal == ["0", "0", "0"] or SecondDiagonal == ["0", "0", "0"]:
+            self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.second_player_id
