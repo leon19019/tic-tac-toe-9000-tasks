@@ -103,4 +103,4 @@ class TicTacToeGame(AbstractTicTacToeGame):
         
         elif FirstDiagonal == ["0", "0", "0"] or SecondDiagonal == ["0", "0", "0"]:
              self.TicTacToeGameInfo.winner_id = self.TicTacToeGameInfo.second_player_id
- 
+
