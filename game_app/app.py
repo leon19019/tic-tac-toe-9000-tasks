@@ -1,7 +1,8 @@
 from typing import Dict
 import random
 
-from game_engine import TicTacToeGame, TicTacToeGameInfo, TicTacToeTurn
+from game_engine.tic_tac_toe_game import TicTacToeGame
+from game_engine.tic_tac_toe_common_lib import TicTacToeGameInfo, TicTacToeTurn
 
 
 class GameWithThisIdAlreadyExists(Exception):
@@ -13,14 +14,31 @@ class TicTacToeApp:
         self._games: Dict[str, TicTacToeGame] = {}
         self._passwords: Dict[str, str] = {}
 
-    def start_game(self, first_player_id: str, second_player_id: str, game_id):
-        if self.is_id_free(game_id):
-            game = TicTacToeGame(game_id, first_player_id, second_player_id)
-            self._games[game_id] = game
-            return game.TicTacToeGameInfo
+    def start_game(self, first_player_id, second_player_id, game_id = None):
+        if game_id != None:
+            if game_id not in self._games:
+                game = TicTacToeGame(game_id, first_player_id, second_player_id)
+                self._games.update({game_id:game})
+                return game.TicTacToeGameInfo
+
+            else:
+                TicTacToeApp.make_game_with_random_game_id(self, first_player_id, second_player_id)
 
         else:
-            raise GameWithThisIdAlreadyExists
+            game_id = random.randint(1000000000000000000000000000000, 12345678765436565876776656566565756687686876786745534232433345343453453532554474655756756757657657)
+            game = TicTacToeGame(str(game_id), first_player_id, second_player_id)
+            self._games.update({str(game_id):game})
+            return game.TicTacToeGameInfo
+
+
+
+        
+                
+
+    
+    def make_game_with_random_game_id(self, first_player_id, second_player_id):
+        _game_id = random.randint(1000000000000000000000000000000, 12345678765436565876776656566565756687686876786745534232433345343453453532554474655756756757657657)
+        TicTacToeApp.start_game(self, first_player_id, second_player_id, _game_id)
 
 
     def is_id_free(self, game_id):
@@ -29,9 +47,8 @@ class TicTacToeApp:
         else:
             return False
 
-    def get_game_by_id(self, game_id: str, user_id: str):
-        if self._games[game_id].TicTacToeGameInfo.first_player_id == user_id or self._games[game_id].TicTacToeGameInfo.second_player_id:
-            return self._games[game_id].TicTacToeGameInfo
+    def get_game_by_id(self, game_id: str):
+        return self._games[game_id].TicTacToeGameInfo
 
     def do_turn(self, TicTacToeTurn, game_id: str):
         self._games[game_id].do_turn(TicTacToeTurn)
