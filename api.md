@@ -1,23 +1,38 @@
 # API
 
-# What do we send
+### GET: /api/game_info?game_id=1&user_id=10
+Что делать, если этот пользователь не играет в эту игру?
 
-To start new game:
-
+**response:**
 ```json
-    {"first_player_id":"Name", "second_player_id":"Name", "game_id":123}
+{
+    "game_id": 1,
+    "field": [
+        [" ", " ", " "],
+        [" ", " ", " "],
+        [" ", " ", " "]
+    ],
+    "sequence_of_turns": [],
+    "first_player_id": "10",
+    "second_player_id": "20",
+    "winner_id": ""
+}
 ```
 
-When someone is doing moition:
-
+### POST: /api/sign_up
+**request:**
 ```json
-    TicTacToeGameInfo
+{
+  "user_name": "Vasya",
+  ...
+}
 ```
 
-# What server is sending to us
-
-When someone is making move server is cheching does he have same data with client
-
+**response**
 ```json
-    TicTacToeGameInfo
+{
+  "user_name": "Vasya",
+  "user_id": "af056ec7-4f62-4a38-b860-076d5b5d7ea4",
+  "token": "9a5adaf4-9353-4d28-b1e7-f4c8753dea10"
+}
 ```
