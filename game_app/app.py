@@ -12,7 +12,7 @@ class TicTacToeApp:
     def start_game(self, first_player_id: str, second_player_id: str) -> TicTacToeGameInfo:
         raise NotImplementedError
 
-    def get_game_by_id(self, game_id: str, user_id: str) -> TicTacToeGameInfo:
+    def get_game_by_id(self, game_id: str) -> TicTacToeGameInfo:
         raise NotImplementedError
 
     def do_turn(self, turn: TicTacToeTurn, game_id: str) -> TicTacToeGameInfo:
