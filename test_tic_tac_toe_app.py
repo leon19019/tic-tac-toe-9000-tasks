@@ -43,7 +43,7 @@ def test_1():
         game_id = game_id_PV,
         field=[
             ["X", "O", "X"],
-            ["X", "O", " "],
+            ["X", "O", "X"],
             ["O", "X", "O"]
         ],
         sequence_of_turns=[
@@ -112,3 +112,4 @@ def test_1():
         second_player_id="Vasya",
         winner_id=""
     )
+test_1()
